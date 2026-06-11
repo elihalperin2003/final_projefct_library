@@ -25,6 +25,7 @@ docker run --name mysql-w7
 
 ---------------------------
 
+```
 final_project/
 │
 │
@@ -43,6 +44,7 @@ final_project/
 ├── README.md
 ├── requirements.txt
 └── .gitignore
+```
 
 ---------------------------
 
@@ -93,6 +95,8 @@ total_borrows
 עמודה לא ריקה
 
 ---------------------------
+
+system's roles
 
 1
 יצירת ספר
@@ -193,23 +197,32 @@ GET /reports/top-member
 
 ---------------------------
 
-creating in Docker before server's loading
+system's flow
+
+creating in Docker before server's uploading
         ↓
 connecting to container and creating database library_db
         ↓
-loading the sever
+uploading the server
         ↓
 creating tables: book & member
         ↓
 main menu: (options)
 
-1. create book:
+all options:
 running the route
         ↓
-validation the data typing
+validation the data typing (if exists)
         ↓
-validation the data line according to table roles
+logic's system - 8 roles
+        ↓
+validation the data line according to table roles (if exists)
         ↓
 running quary 
 
+---------------------------
 
+running
+
+pip install -r requirements.txt
+uvicorn main:app
