@@ -226,14 +226,3 @@ running
 
 pip install -r requirements.txt
 uvicorn main:app
-
----------------------------
-
-creating database 
-
-with db_connection.cursor() as cursor:
-    cursor.execute(
-        "CREATE DATABASE IF NOT EXISTS library_db"
-    )
-
-db_connection.database = "library_db"
