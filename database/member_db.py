@@ -43,5 +43,11 @@ class MemberDB:
         self.conn.commit()
         print(201)
 
+    def activate_member(self, id):
+        with self.cursor() as cur:
+            cur.execute("UPDATE members SET is_active = TRUE WHERE id = %s", (id,))
+        self.conn.commit()
+        print(201)
+
 
 member_db = MemberDB(conn)
