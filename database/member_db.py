@@ -52,5 +52,11 @@ class MemberDB:
             cur.execute("UPDATE members SET total_borrows = total_borrows + 1 WHERE id = %s", (id,))
         self.conn.commit()
 
+    def count_active_members(self):
+        with self.cursor() as cur:
+            cur.execute("SELECT COUNT(*) FROM members WHERE is_active = True")
+            data = cur.fetchone()
+        return data[0]
+
 
 member_db = MemberDB(conn)
