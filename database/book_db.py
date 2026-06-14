@@ -31,7 +31,7 @@ class BookDB:
         values = tuple(v for v in data.values()) + (id,)
         sql_txt = """
                     UPDATE books
-                    SET title = %s, author = %s, genre = %s, is_available = %s, borrowed_by_member_id = %s
+                    SET title = %s, author = %s, genre = %s
                     WHERE id = %s
                       """
         with self.cursor() as cursor:
