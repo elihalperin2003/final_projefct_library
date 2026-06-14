@@ -79,5 +79,18 @@ class BookDB:
             data = cursor.fetchall()
         return data
 
+    def count_by_genre(self, genre):
+        with self.cursor() as cur:
+            cur.execute(
+                """
+                SELECT COUNT(*)
+                FROM books
+                WHERE genre = %s
+                """,
+                (genre,),
+            )
+            result = cur.fetchall()
+        return result
+
 
 book_db = BookDB(conn)
