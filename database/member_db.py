@@ -20,13 +20,13 @@ class MemberDB:
             result = cur.fetchall()
         return result
 
-    def get_book_by_id(self, id: int):
+    def get_member_by_id(self, id: int):
         with self.cursor() as cur:
             cur.execute("SELECT * FROM members WHERE id = %s", (id,))
             data = cur.fetchall()
         return data
 
-    def update_book(self, id: int, data: dict):
+    def update_member(self, id: int, data: dict):
         values = tuple(val for val in data.values())
         sql_txt = """
         UPDATE members
@@ -35,6 +35,11 @@ class MemberDB:
         """
         with self.cursor() as cur:
             cur.execute(sql_txt, (*values, id))
+        self.conn.commit()
+
+    def deactivate_member(self, id):
+        with self.cursor() as cur:
+            cur.execute("UPDATE members SET is_active = FALSE WHERE id = %s", (id,))
         self.conn.commit()
         print(201)
 
