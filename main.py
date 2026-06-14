@@ -5,7 +5,7 @@ from database.book_db import book_db
 
 def main():
     create_tables(conn)
-    print(book_db.count_by_genre("fiction"))
+    print(book_db.count_active_borrows_by_member(5))
 
 
 main()

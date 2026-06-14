@@ -92,5 +92,18 @@ class BookDB:
             result = cur.fetchall()
         return result
 
+    def count_active_borrows_by_member(self, member_id):
+        with self.cursor() as cur:
+            cur.execute(
+                """
+                SELECT COUNT(*)
+                FROM books
+                WHERE borrowed_by_member_id = %s
+                """,
+                (member_id,),
+            )
+            result = cur.fetchall()
+        return result
+
 
 book_db = BookDB(conn)
