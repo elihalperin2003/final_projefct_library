@@ -41,13 +41,16 @@ class MemberDB:
         with self.cursor() as cur:
             cur.execute("UPDATE members SET is_active = FALSE WHERE id = %s", (id,))
         self.conn.commit()
-        print(201)
 
     def activate_member(self, id):
         with self.cursor() as cur:
             cur.execute("UPDATE members SET is_active = TRUE WHERE id = %s", (id,))
         self.conn.commit()
-        print(201)
+
+    def increment_borrows(self, id: int):
+        with self.cursor() as cur:
+            cur.execute("UPDATE members SET total_borrows = total_borrows + 1 WHERE id = %s", (id,))
+        self.conn.commit()
 
 
 member_db = MemberDB(conn)

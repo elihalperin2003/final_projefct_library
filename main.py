@@ -10,7 +10,7 @@ def main():
     # member_db.update_book(1, {"name": "loopy_abu", "email": "la@poop", "is_active": True, "total_borrows": 2})
 
     print(member_db.get_member_by_id(1))
-    member_db.activate_member(1)
+    member_db.increment_borrows(1)
     print(member_db.get_member_by_id(1))
 
 
