@@ -15,5 +15,17 @@ class MemberDB:
         self.conn.commit()
         print(201)
 
+    def get_all_members(self):
+        with self.cursor() as cur:
+            cur.execute("SELECT * FROM members")
+            result = cur.fetchall()
+        return result
+
+    def get_book_by_id(self, id: int):
+        with self.cursor() as cur:
+            cur.execute("SELECT * FROM members WHERE id = %s", (id,))
+            data = cur.fetchall()
+        return data
+
 
 member_db = MemberDB(conn)
