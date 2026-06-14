@@ -69,5 +69,15 @@ class BookDB:
             data = cursor.fetchall()
         return data
 
+    def count_borrowed_books(self):
+        with self.cursor() as cursor:
+            cursor.execute("""
+                SELECT COUNT(*)
+                FROM books
+                WHERE is_available = False
+                """)
+            data = cursor.fetchall()
+        return data
+
 
 book_db = BookDB(conn)
