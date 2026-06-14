@@ -36,8 +36,19 @@ class BookDB:
                       """
         with self.cursor() as cursor:
             cursor.execute(sql_txt, values)
-            conn.commit()
+            self.conn.commit()
         print(200)
+
+    def set_availabla(self, id: int, val: bool, member_id: int):
+        with self.cursor() as cursor:
+            cursor.execute(
+                """
+                UPDATE books
+                SET is_available = %s, borrowed_by_member_id = %s
+                WHERE id = %s""",
+                (val, member_id, id),
+            )
+            self.conn.commit()
 
 
 book_db = BookDB(conn)
