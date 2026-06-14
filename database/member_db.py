@@ -13,7 +13,6 @@ class MemberDB:
         with self.cursor() as cur:
             cur.execute(txt_qsl, tuple(v for v in data.values()))
         self.conn.commit()
-        print(201)
 
     def get_all_members(self):
         with self.cursor() as cur:
@@ -26,6 +25,18 @@ class MemberDB:
             cur.execute("SELECT * FROM members WHERE id = %s", (id,))
             data = cur.fetchall()
         return data
+
+    def update_book(self, id: int, data: dict):
+        values = tuple(val for val in data.values())
+        sql_txt = """
+        UPDATE members
+        SET name = %s, email = %s, is_active = %s, total_borrows = %s
+        WHERE id = %s
+        """
+        with self.cursor() as cur:
+            cur.execute(sql_txt, (*values, id))
+        self.conn.commit()
+        print(201)
 
 
 member_db = MemberDB(conn)

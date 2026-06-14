@@ -7,7 +7,8 @@ from database.member_db import member_db
 def main():
     create_tables(conn)
     # member_db.create_member({"name": "loopy", "email": "lam@poop", "is_active": True, "total_borrows": 0})
-    print(member_db.get_all_members())
+    print(member_db.get_book_by_id(1))
+    member_db.update_book(1, {"name": "loopy_abu", "email": "la@poop", "is_active": True, "total_borrows": 2})
     print(member_db.get_book_by_id(1))
 
 
