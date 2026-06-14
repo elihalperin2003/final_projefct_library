@@ -58,5 +58,11 @@ class MemberDB:
             data = cur.fetchone()
         return data[0]
 
+    def get_top_member(self):
+        with self.cursor() as cur:
+            cur.execute("SELECT name FROM members ORDER BY total_borrows DESC limit 1")
+            data = cur.fetchone()
+        return data[0]
+
 
 member_db = MemberDB(conn)
