@@ -9,8 +9,8 @@ class BookDB:
 
     def create_book(self, data: dict):
         values = tuple(v for v in data.values())
-        sql_txt = f"INSERT INTO books ({self.fields})"
-        sql_txt += "VALUES (%s, %s, %s, %s, %s)"
+        sql_txt = f"INSERT INTO books (title, author, genre, is_available)"
+        sql_txt += "VALUES (%s, %s, %s, %s)"
         with self.cursor(dictionary=True) as cursor:
             cursor.execute((sql_txt), (values))
         self.conn.commit()
