@@ -5,6 +5,8 @@ from database.book_db import book_db
 
 def main():
     create_tables(conn)
+    print(book_db.count_total_books())
+    print(book_db.get_all_books())
 
 
 main()
