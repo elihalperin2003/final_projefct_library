@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 from routes.book_routes import book_route
 from routes.member_routes import member_route
 
-from database.db_connection import create_tables
+# from database.db_connection import create_tables
 from database.db_connection import db_connection as conn
 
 from database.book_db import book_db
@@ -30,4 +30,4 @@ def main():
     print(book_db.get_all_books())
 
 
-main()
+# main()

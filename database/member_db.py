@@ -4,7 +4,7 @@ from database.db_connection import db_connection as conn
 class MemberDB:
     def __init__(self, conn):
         self.conn = conn
-        self.cursor = self.conn.cursor
+        self.cursor = self.conn.conn.cursor
         self.fields = "name, email, is_active, total_borrows"
 
     def create_member(self, data: dict):

@@ -4,7 +4,7 @@ from database.db_connection import db_connection as conn
 class BookDB:
     def __init__(self, conn):
         self.conn = conn
-        self.cursor = self.conn.cursor
+        self.cursor = self.conn.conn.cursor
         self.fields = "title, author, genre, is_available, borrowed_by_member_id"
 
     def create_book(self, data: dict):
