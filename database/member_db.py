@@ -15,13 +15,13 @@ class MemberDB:
         self.conn.commit()
 
     def get_all_members(self):
-        with self.cursor() as cur:
+        with self.cursor(dictionary=True) as cur:
             cur.execute("SELECT * FROM members")
             result = cur.fetchall()
         return result
 
     def get_member_by_id(self, id: int):
-        with self.cursor() as cur:
+        with self.cursor(dictionary=True) as cur:
             cur.execute("SELECT * FROM members WHERE id = %s", (id,))
             data = cur.fetchall()
         return data
@@ -30,7 +30,7 @@ class MemberDB:
         values = tuple(val for val in data.values())
         sql_txt = """
         UPDATE members
-        SET name = %s, email = %s, is_active = %s, total_borrows = %s
+        SET name = %s, email = %s
         WHERE id = %s
         """
         with self.cursor() as cur:
@@ -38,12 +38,12 @@ class MemberDB:
         self.conn.commit()
 
     def deactivate_member(self, id):
-        with self.cursor() as cur:
+        with self.cursor(dictionary=True) as cur:
             cur.execute("UPDATE members SET is_active = FALSE WHERE id = %s", (id,))
         self.conn.commit()
 
     def activate_member(self, id):
-        with self.cursor() as cur:
+        with self.cursor(dictionary=True) as cur:
             cur.execute("UPDATE members SET is_active = TRUE WHERE id = %s", (id,))
         self.conn.commit()
 

@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 
 from database.book_db import book_db
+from database.member_db import member_db
 
 book_route = APIRouter()
 
@@ -37,11 +38,12 @@ def update_book(id: int, title: str, author: str, genre: str):
 def borrow_book(id: int, member_id: int):
     if not isinstance(id, int) or not isinstance(member_id, int):
         raise HTTPException(422, f"{id} - is not number")
-    return book_db.set_availabla(id, False, member_id)
+    book_db.set_availabla(id, False, member_id)
+    member_db.increment_borrows(id)
 
 
 @book_route.patch("/{id}/return/{member_id}")
-def borrow_book(id: int, member_id: int):
+def return_book(id: int, member_id: int):
     if not isinstance(id, int) or not isinstance(member_id, int):
         raise HTTPException(422, f"{id} - is not number")
-    return book_db.set_availabla(id, True, member_id)
+    book_db.set_availabla(id, True, None)
