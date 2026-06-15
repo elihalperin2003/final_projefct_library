@@ -19,15 +19,3 @@ app.include_router(member_route, prefix="/members")
 @app.exception_handler(Exception)
 def except_handlers(req, e):
     return JSONResponse(500, "The server not working")
-
-
-def main():
-    create_tables(conn)
-    # member_db.create_member({"name": "mishel", "email": "mishel@poop", "is_active": True, "total_borrows": 3})
-    # member_db.update_book(1, {"name": "loopy_abu", "email": "la@poop", "is_active": True, "total_borrows": 2})
-    # print(member_db.get_all_members())
-    # print(member_db.get_top_member())
-    print(book_db.get_all_books())
-
-
-# main()
